@@ -60,8 +60,8 @@ export default function CreateProduct() {
         <Modal.Header closeButton>
           <Modal.Title>Adicionar Produto</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <Form onSubmit={formSubmit}>
+        <Form onSubmit={formSubmit}>
+          <Modal.Body>
             <Form.Group className="mb-3">
               <Form.Label>Nome*</Form.Label>
               <Form.Control
@@ -123,16 +123,16 @@ export default function CreateProduct() {
                 onChange={formChange}
               />
             </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Fechar
-          </Button>
-          <Button variant="primary" type="submit" onClick={handleClose}>
-            Adicionar
-          </Button>
-        </Modal.Footer>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Fechar
+            </Button>
+            <Button variant="primary" type="submit" onClick={handleClose}>
+              Adicionar
+            </Button>
+          </Modal.Footer>
+        </Form>
       </Modal>
     </>
   );

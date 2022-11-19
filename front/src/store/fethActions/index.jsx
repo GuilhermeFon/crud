@@ -1,7 +1,7 @@
 import api from "../../services/api";
 
 import {login} from "../ducks/auth";
-import {addProducts, addProduct} from "../ducks/products";
+import {getProducts, addProduct} from "../ducks/products";
 
 export const authLogin = (user) => {
   return (dispatch) => {
@@ -20,10 +20,21 @@ export const authLogin = (user) => {
   };
 };
 
+export const getAllProducts = () => {
+  return (dispatch) => {
+    api
+      .get("http://localhost:3000/products")
+      .then((res) => {
+        dispatch(getProducts(res.data));
+      })
+      .catch(console.log);
+  };
+};
+
 export const addProductFetch = (product) => {
   return (dispatch) => {
     api
-      .post("/products", product)
+      .post("http://localhost:3000/products", product)
       .then((res) => dispatch(addProduct(res.data)))
       .catch(console.log);
   };
