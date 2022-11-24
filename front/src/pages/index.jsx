@@ -13,7 +13,7 @@ function PrivateRoute({children}) {
 
 export default () => (
   <Routes>
-    <Route path="/2" element={<Login />} />
+    <Route path="/" element={<Login />} />
     <Route
       path="/products"
       element={
