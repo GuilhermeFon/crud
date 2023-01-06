@@ -23,7 +23,6 @@ export default function List() {
     setShow(true);
   };
 
-  const name = "Guilherme";
   return (
     <>
       <Button className="primary mb-3" onClick={handleShow}>
@@ -48,14 +47,14 @@ export default function List() {
             return (
               <ProductItem
                 index={index + 1}
-                key={product._id}
+                key={product.id}
                 product={product}
               />
             );
           })}
         </tbody>
       </Table>
-      <Modal show={show} handleClose={handleClose} myname={name} />
+      <Modal show={show} handleClose={handleClose} />
     </>
   );
 }
