@@ -39,3 +39,12 @@ export const addProductFetch = (product) => {
       .catch(console.log);
   };
 };
+
+export const updateProductFetch = (product) => {
+  return (dispatch) => {
+    api
+      .patch("http://localhost:3000/products/" + id, product)
+      .then((res) => dispatch(addProduct(res.data)))
+      .catch(console.log);
+  };
+};

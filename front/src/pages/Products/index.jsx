@@ -1,7 +1,7 @@
 import React from "react";
 
 import List from "../List";
-import Modal from "../../components/Modal"
+import Modal from "../../components/ModalProduct"
 
 export default function Products() {
   return (

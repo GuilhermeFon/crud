@@ -5,14 +5,7 @@ import {useDispatch} from "react-redux";
 
 import {Button, Form, Modal, InputGroup} from "react-bootstrap";
 
-export default function CreateProduct() {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => {
-    setShow(true);
-  };
-
+export default function ModalProduct({show, handleClose}) {
   const [hidden, setHidden] = useState(true);
 
   const handleHidden = () => setHidden(true);
@@ -52,10 +45,6 @@ export default function CreateProduct() {
 
   return (
     <>
-      <Button className="primary mb-3" onClick={handleShow}>
-        Adicionar
-      </Button>
-
       <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title>Adicionar Produto</Modal.Title>

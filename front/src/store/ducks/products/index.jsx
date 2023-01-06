@@ -8,3 +8,5 @@ export default createReducer(INITIAL_STATE, {
   [addProduct.type]: (state, action) => [...state, action.payload],
   [getProducts.type]: (state, action) => [...action.payload],
 });
+
+
