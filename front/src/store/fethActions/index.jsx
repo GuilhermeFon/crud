@@ -1,7 +1,12 @@
 import api from "../../services/api";
 
 import {login} from "../ducks/auth";
-import {getProducts, addProduct} from "../ducks/products";
+import {
+  getProducts,
+  addProduct,
+  removeProduct,
+  updateProduct,
+} from "../ducks/products";
 
 export const authLogin = (user) => {
   return (dispatch) => {
@@ -40,11 +45,37 @@ export const addProductFetch = (product) => {
   };
 };
 
-export const updateProductFetch = (product) => {
+// export const updateProductFetch = (id) => {
+//   return (dispatch) => {
+//     api
+//       .patch(`http://localhost:3000/products/${id}`, product)
+//       .then((res) => dispatch(addProduct(res.data)))
+//       .catch(console.log);
+//   };
+// };
+
+export const updateProductFetch = (id, data) => {
   return (dispatch) => {
     api
-      .patch("http://localhost:3000/products/" + id, product)
-      .then((res) => dispatch(addProduct(res.data)))
-      .catch(console.log);
+      .patch(`http://localhost:3000/products/${id}`, data)
+      .then((res) => {
+        dispatch(updateProduct(res.data));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+export const removeProductFetch = (id) => {
+  return (dispatch) => {
+    api
+      .delete(`http://localhost:3000/products/${id}`)
+      .then((res) => {
+        dispatch(removeProduct(id));
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 };

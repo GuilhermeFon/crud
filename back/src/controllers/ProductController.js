@@ -26,13 +26,13 @@ class ProductController {
       req.body;
 
     try {
-      if (!name || !price || !manufactureDate || perishable === undefined) {
+      if (!name || !price || !manufacturing_date || perishable === undefined) {
         throw new Error("Campos devem ser preenchidos");
       }
 
-      if (expirationDate && manufactureDate) {
-        const expiration = new Date(expirationDate);
-        const manufacture = new Date(manufactureDate);
+      if (expiration_date && manufacturing_date) {
+        const expiration = new Date(expiration_date);
+        const manufacture = new Date(manufacturing_date);
 
         if (manufacture.getTime() > expiration.getTime()) {
           throw new Error(
@@ -47,8 +47,8 @@ class ProductController {
           name,
           price,
           perishable,
-          manufacturing_date: manufactureDate,
-          expiration_date: expirationDate,
+          manufacturing_date,
+          expiration_date,
         },
         {
           new: true,
@@ -59,6 +59,14 @@ class ProductController {
     } catch (error) {
       res.status(400).send({error: error.message});
     }
+  };
+
+  remove = async (req, res) => {
+    const {id} = req.params;
+    const currentContent = readFile();
+    const selectedItem = currentContent.findIndex((item) => item.id === id);
+    currentContent.splice(selectedItem, 1);
+    res.send(currentContent);
   };
 }
 
