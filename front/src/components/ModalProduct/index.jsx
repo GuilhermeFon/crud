@@ -7,7 +7,8 @@ import {Button, Form, Modal, InputGroup} from "react-bootstrap";
 
 export default function ModalProduct({show, handleClose}) {
   const [hidden, setHidden] = useState(true);
-
+  const [perishable, setPerishable] = React.useState(false);
+  const [expiration_date, setExpirationDate] = React.useState("");
   const handleHidden = () => setHidden(true);
   const handleNotHidden = () => {
     setHidden(false);
@@ -42,6 +43,12 @@ export default function ModalProduct({show, handleClose}) {
       price: "",
     });
   }
+
+  React.useEffect(() => {
+    if (!perishable && expiration_date) {
+      setExpirationDate("");
+    }
+  }, [expiration_date, perishable]);
 
   return (
     <>
