@@ -1,36 +1,116 @@
 {
   "products": [
     {
-      "name": "teste b",
+      "name": "cervejaaa",
       "manufacturing_date": "2023-03-02",
       "perishable": "true",
-      "expiration_date": "2023-03-30",
-      "price": "32",
+      "expiration_date": "",
+      "price": "12",
       "id": 1
     },
     {
-      "name": "cerveja",
-      "manufacturing_date": "2022-12-08",
-      "perishable": "true",
-      "expiration_date": "2023-06-30",
-      "price": "12",
+      "name": "Leite1",
+      "manufacturing_date": "2023-03-02",
+      "perishable": "false",
+      "expiration_date": "",
+      "price": "4",
       "id": 2
     },
     {
-      "name": "leite",
-      "manufacturing_date": "2023-01-05",
-      "perishable": "true",
-      "expiration_date": "2023-08-25",
-      "price": "4",
+      "name": "abacate",
+      "manufacturing_date": "2023-03-02",
+      "perishable": "false",
+      "expiration_date": "",
+      "price": "1",
       "id": 3
     },
     {
-      "name": "arroz",
-      "manufacturing_date": "2022-08-11",
+      "name": "limão",
+      "manufacturing_date": "2023-03-04",
       "perishable": "true",
-      "expiration_date": "2024-01-31",
-      "price": "8",
+      "expiration_date": "",
+      "price": "0.50",
       "id": 4
+    },
+    {
+      "name": "teste b",
+      "manufacturing_date": "2023-03-03",
+      "perishable": "true",
+      "expiration_date": "2023-03-31",
+      "price": "234",
+      "id": 5
+    },
+    {
+      "name": "777",
+      "manufacturing_date": "2023-03-02",
+      "perishable": "true",
+      "expiration_date": "2023-05-31",
+      "price": "123",
+      "id": 6
+    },
+    {
+      "name": "melancia",
+      "manufacturing_date": "2023-03-02",
+      "perishable": "true",
+      "expiration_date": "2023-05-18",
+      "price": "238",
+      "id": 7
+    },
+    {
+      "name": "teste b",
+      "manufacturing_date": "2023-03-02",
+      "perishable": "false",
+      "expiration_date": "",
+      "price": "32",
+      "id": 8
+    },
+    {
+      "name": "aaaaaaaaaaaaaaaaaaa",
+      "manufacturing_date": "2023-03-02",
+      "perishable": "true",
+      "expiration_date": "2023-03-31",
+      "price": "23",
+      "id": 9
+    },
+    {
+      "name": "SHUAHSUAHSUHAU",
+      "manufacturing_date": "2023-03-02",
+      "perishable": "false",
+      "expiration_date": "",
+      "price": "23",
+      "id": 10
+    },
+    {
+      "name": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadddd",
+      "manufacturing_date": "2023-03-03",
+      "perishable": "false",
+      "expiration_date": "",
+      "price": "23",
+      "id": 11
+    },
+    {
+      "name": "bbb",
+      "manufacturing_date": "2023-03-04",
+      "perishable": "true",
+      "expiration_date": "2023-03-02",
+      "price": "32",
+      "id": 12
+    },
+    {
+      "name": "cerveja",
+      "manufacturing_date": "2023-03-01",
+      "perishable": "true",
+      "expiration_date": "2023-03-03",
+      "price": "13",
+      "id": 13
+    },
+    {
+      "name": "ccccccccccc",
+      "manufacturing_date": "2023-03-02",
+      "perishable": "true",
+      "expiration_date": "2023-03-01",
+      "price": "23",
+      "id": 14
     }
   ]
 }

@@ -1,14 +1,16 @@
 import React, {useEffect, useState} from "react";
 import {useSelector, useDispatch} from "react-redux";
-import ProductItem from "../../components/ProductItem";
-import Modal from "../../components/ModalProduct";
+import ModalProduct from "../../components/ModalProduct";
+import convertDate from "../../utils/convertDate";
 
-import {getAllProducts} from "../../store/fethActions";
+import {getAllProducts, removeProductFetch} from "../../store/fethActions";
 
 import {Table, Button} from "react-bootstrap";
+import {PencilSimple, Trash} from "phosphor-react";
 
 export default function List() {
   const [show, setShow] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
   const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
 
@@ -18,10 +20,18 @@ export default function List() {
 
   const handleClose = () => {
     setShow(false);
+    setSelectedProduct(null);
   };
   const handleShow = () => {
     setShow(true);
   };
+  const handleEditProduct = (product) => {
+    setSelectedProduct(product);
+    setShow(true);
+  };
+  function removeItem(product) {
+    dispatch(removeProductFetch(product.id));
+  }
 
   return (
     <>
@@ -45,16 +55,41 @@ export default function List() {
         <tbody>
           {products.map((product, index) => {
             return (
-              <ProductItem
-                index={index + 1}
-                key={product.id}
-                product={product}
-              />
+              <tr key={product.id}>
+                <td>{index + 1}</td>
+                <td>{product.name}</td>
+                <td>{convertDate(product.manufacturing_date)}</td>
+                {product.perishable === "true" ? <td>Sim</td> : <td>Não</td>}
+                <td>
+                  {product.expiration_date
+                    ? convertDate(product.expiration_date)
+                    : "-"}
+                </td>
+                <td>{product.price}</td>
+                <td>
+                  <div>
+                    <PencilSimple
+                      cursor="pointer"
+                      onClick={() => handleEditProduct(product)}
+                      alt="edit"
+                    />
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <Trash
+                      cursor="pointer"
+                      alt="remove"
+                      onClick={() => removeItem(product)}
+                    />
+                  </div>
+                </td>
+              </tr>
             );
           })}
         </tbody>
       </Table>
-      <Modal show={show} handleClose={handleClose} />
+      <ModalProduct show={show} onClose={handleClose} product={selectedProduct} />
     </>
   );
 }

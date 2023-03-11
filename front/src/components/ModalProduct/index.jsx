@@ -1,26 +1,28 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 
-import {addProductFetch} from "../../store/fethActions";
+import {addProductFetch, updateProductFetch} from "../../store/fethActions";
 import {useDispatch} from "react-redux";
 
 import {Button, Form, Modal, InputGroup} from "react-bootstrap";
 
-export default function ModalProduct({show, handleClose}) {
-  const [hidden, setHidden] = useState(true);
+export default function ModalProduct({show, onClose, product}) {
   const [perishable, setPerishable] = React.useState(false);
   const [expiration_date, setExpirationDate] = React.useState("");
-  const handleHidden = () => setHidden(true);
-  const handleNotHidden = () => {
-    setHidden(false);
-  };
 
+  const isEdit = !!product?.id;
   const [form, setForm] = useState({
     name: "",
     manufacturing_date: "",
-    perishable: "",
+    perishable: "true",
     expiration_date: "",
     price: "",
   });
+
+  useEffect(() => {
+    if (product?.id) {
+      setForm(product);
+    }
+  }, [product]);
 
   const dispatch = useDispatch();
 
@@ -30,33 +32,47 @@ export default function ModalProduct({show, handleClose}) {
     setForm({...form, [name]: value});
   }
 
-  function formSubmit(e) {
-    e.preventDefault();
-
-    dispatch(addProductFetch(form));
-
-    setForm({
-      name: "",
-      manufacturing_date: "",
-      perishable: "",
-      expiration_date: "",
-      price: "",
-    });
-  }
-
-  React.useEffect(() => {
+  useEffect(() => {
     if (!perishable && expiration_date) {
       setExpirationDate("");
     }
   }, [expiration_date, perishable]);
 
+  function addEditProduct(e) {
+    e.preventDefault();
+
+    // if (form.manufacturing_date > form.expiration_date) {
+    //   window.alert("deu merda");
+    //   return;
+    // }
+
+    isEdit && dispatch(updateProductFetch(product.id, form));
+    !isEdit && form?.name !== "" && dispatch(addProductFetch(form));
+
+    handleClose();
+  }
+
+  function handleClose() {
+    setForm({
+      name: "",
+      manufacturing_date: "",
+      perishable: "true",
+      expiration_date: "",
+      price: "",
+    });
+
+    onClose();
+  }
+
   return (
     <>
       <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Adicionar Produto</Modal.Title>
+          <Modal.Title>
+            {isEdit ? "Editar Produto" : "Adicionar Produto"}
+          </Modal.Title>
         </Modal.Header>
-        <Form onSubmit={formSubmit}>
+        <Form onSubmit={addEditProduct}>
           <Modal.Body>
             <Form.Group className="mb-3">
               <Form.Label>Nome*</Form.Label>
@@ -66,6 +82,7 @@ export default function ModalProduct({show, handleClose}) {
                 type="name"
                 name="name"
                 value={form.name}
+                required
               />
             </Form.Group>
             <Form.Group className="mb-3">
@@ -75,6 +92,7 @@ export default function ModalProduct({show, handleClose}) {
                 name="price"
                 onChange={formChange}
                 value={form.price}
+                required
               />
             </Form.Group>
             <Form.Group className="mb-3">
@@ -84,6 +102,7 @@ export default function ModalProduct({show, handleClose}) {
                 name="manufacturing_date"
                 onChange={formChange}
                 value={form.manufacturing_date}
+                required
               />
             </Form.Group>
             <Form.Group className="mb-3">
@@ -97,7 +116,7 @@ export default function ModalProduct({show, handleClose}) {
                   name="perishable"
                   id="yes"
                   value={true}
-                  onClick={handleNotHidden}
+                  checked={form.perishable === "true"}
                 />
                 <Form.Text>Não</Form.Text>
                 <Form.Check
@@ -107,16 +126,21 @@ export default function ModalProduct({show, handleClose}) {
                   name="perishable"
                   id="no"
                   value={false}
-                  onClick={handleHidden}
                 />
               </InputGroup>
             </Form.Group>
-            <Form.Group hidden={hidden} id="expiration" className="mb-3">
+            <Form.Group
+              hidden={form.perishable === "false"}
+              id="expiration"
+              className="mb-3"
+            >
               <Form.Label>Data de Validade*</Form.Label>
               <Form.Control
                 type="date"
                 name="expiration_date"
                 onChange={formChange}
+                value={form.expiration_date}
+                required={form.perishable === "true"}
               />
             </Form.Group>
           </Modal.Body>
@@ -124,8 +148,8 @@ export default function ModalProduct({show, handleClose}) {
             <Button variant="secondary" onClick={handleClose}>
               Fechar
             </Button>
-            <Button variant="primary" type="submit" onClick={handleClose}>
-              Adicionar
+            <Button type="submit" variant="primary">
+              {isEdit ? "Editar" : "Adicionar"}
             </Button>
           </Modal.Footer>
         </Form>
