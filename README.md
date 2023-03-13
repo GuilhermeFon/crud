@@ -21,7 +21,7 @@ $ git clone https://github.com/GuilhermeFon/crud.git
 
 # Rodando o Backend (servidor)
 
-Acesse a pasta "backend" do projeto no terminal/cmd
+Acesse a pasta "back" do projeto no terminal/cmd
 
 $ cd crud/backend
 
@@ -39,7 +39,7 @@ $ json-server db.json
 
 # Rodando o Frontend 
 
-Acesse a pasta "frontend" do projeto no terminal/cmd
+Acesse a pasta "front" do projeto no terminal/cmd
 
 Instale as dependências
 
