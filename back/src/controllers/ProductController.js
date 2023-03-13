@@ -18,40 +18,21 @@ class ProductController {
     const {name, manufacturing_date, perishable, expiration_date, price} =
       req.body;
 
-    try {
-      if (!name || !price || !manufacturing_date || perishable === undefined) {
-        throw new Error("Campos devem ser preenchidos");
+    const product = await Product.findByIdAndUpdate(
+      id,
+      {
+        name,
+        price,
+        perishable,
+        manufacturing_date,
+        expiration_date,
+      },
+      {
+        new: true,
       }
+    );
 
-      if (expiration_date && manufacturing_date) {
-        const expiration = new Date(expiration_date);
-        const manufacture = new Date(manufacturing_date);
-
-        if (manufacture.getTime() > expiration.getTime()) {
-          throw new Error(
-            "Data de fabricação não deve ser maior que data de validade"
-          );
-        }
-      }
-
-      const product = await Product.findByIdAndUpdate(
-        id,
-        {
-          name,
-          price,
-          perishable,
-          manufacturing_date,
-          expiration_date,
-        },
-        {
-          new: true,
-        }
-      );
-
-      res.status(200).send({product});
-    } catch (error) {
-      res.status(400).send({error: error.message});
-    }
+    res.status(200).send({product});
   };
 
   remove = async (req, res) => {

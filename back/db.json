@@ -25,14 +25,6 @@
       "id": 4
     },
     {
-      "name": "teste bababa",
-      "manufacturing_date": "2023-03-03",
-      "perishable": "false",
-      "expiration_date": "",
-      "price": "23",
-      "id": 5
-    },
-    {
       "name": "777",
       "manufacturing_date": "2023-03-02",
       "perishable": "false",
@@ -43,8 +35,8 @@
     {
       "name": "melancia",
       "manufacturing_date": "2023-03-02",
-      "perishable": "false",
-      "expiration_date": "",
+      "perishable": "true",
+      "expiration_date": "2023-03-30",
       "price": "238",
       "id": 7
     },
@@ -73,14 +65,6 @@
       "id": 10
     },
     {
-      "name": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadddd",
-      "manufacturing_date": "2023-03-03",
-      "perishable": "false",
-      "expiration_date": "",
-      "price": "23",
-      "id": 11
-    },
-    {
       "name": "bbb",
       "manufacturing_date": "2023-09-29",
       "perishable": "false",
@@ -107,16 +91,16 @@
     {
       "name": "teste validação",
       "manufacturing_date": "2023-03-03",
-      "perishable": "false",
-      "expiration_date": "",
+      "perishable": "true",
+      "expiration_date": "2023-03-23",
       "price": "23",
       "id": 15
     },
     {
       "name": "777",
       "manufacturing_date": "2023-03-04",
-      "perishable": "false",
-      "expiration_date": "",
+      "perishable": "true",
+      "expiration_date": "2023-03-31",
       "price": "34",
       "id": 16
     },
@@ -175,6 +159,14 @@
       "expiration_date": "2023-03-18",
       "price": "34",
       "id": 23
+    },
+    {
+      "name": "melão",
+      "manufacturing_date": "2023-03-15",
+      "perishable": "false",
+      "expiration_date": "",
+      "price": "12",
+      "id": 24
     }
   ]
 }
