@@ -50,3 +50,11 @@ Execute a aplicação
 $ yarn dev
 
 Abra a aplicação!
+
+# Login
+
+para realizar o login utilize:
+
+email: teste@gmail.com
+
+senha: teste
