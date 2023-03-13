@@ -1,14 +1,7 @@
-const Product = require("../models/Product");
-
 class ProductController {
   constructor(dao) {
     this.dao = dao;
   }
-
-  // async index(req, res) {
-  //   const product = await Product.find();
-  //   return res.json(product)
-  // }
 
   index = async (req, res) => {
     const products = await this.dao.find();
@@ -69,5 +62,3 @@ class ProductController {
     res.send(currentContent);
   };
 }
-
-module.exports = new ProductController(Product);

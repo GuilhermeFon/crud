@@ -6,14 +6,11 @@ import {useDispatch} from "react-redux";
 import {Button, Form, Modal, InputGroup} from "react-bootstrap";
 
 export default function ModalProduct({show, onClose, product}) {
-  const [perishable, setPerishable] = React.useState(false);
-  const [expiration_date, setExpirationDate] = React.useState("");
-
   const isEdit = !!product?.id;
   const [form, setForm] = useState({
     name: "",
     manufacturing_date: "",
-    perishable: "true",
+    perishable: "false",
     expiration_date: "",
     price: "",
   });
@@ -32,22 +29,28 @@ export default function ModalProduct({show, onClose, product}) {
     setForm({...form, [name]: value});
   }
 
-  useEffect(() => {
-    if (!perishable && expiration_date) {
-      setExpirationDate("");
-    }
-  }, [expiration_date, perishable]);
-
   function addEditProduct(e) {
     e.preventDefault();
 
-    // if (form.manufacturing_date > form.expiration_date) {
-    //   window.alert("deu merda");
-    //   return;
-    // }
+    let formattedForm = form;
 
-    isEdit && dispatch(updateProductFetch(product.id, form));
-    !isEdit && form?.name !== "" && dispatch(addProductFetch(form));
+    if (form.perishable === "false") {
+      formattedForm = {
+        ...form,
+        expiration_date: "",
+      };
+    }
+
+    if (
+      form.perishable === "true" &&
+      form.manufacturing_date > form.expiration_date
+    ) {
+      window.alert("Data de Fabricação é maior que a Data de Validade");
+      return;
+    }
+
+    isEdit && dispatch(updateProductFetch(product.id, formattedForm));
+    !isEdit && form?.name !== "" && dispatch(addProductFetch(formattedForm));
 
     handleClose();
   }
@@ -114,7 +117,6 @@ export default function ModalProduct({show, onClose, product}) {
                   onChange={formChange}
                   type="radio"
                   name="perishable"
-                  id="yes"
                   value={true}
                   checked={form.perishable === "true"}
                 />
@@ -124,16 +126,12 @@ export default function ModalProduct({show, onClose, product}) {
                   onChange={formChange}
                   type="radio"
                   name="perishable"
-                  id="no"
+                  checked={form.perishable === "false"}
                   value={false}
                 />
               </InputGroup>
             </Form.Group>
-            <Form.Group
-              hidden={form.perishable === "false"}
-              id="expiration"
-              className="mb-3"
-            >
+            <Form.Group hidden={form.perishable === "false"} className="mb-3">
               <Form.Label>Data de Validade*</Form.Label>
               <Form.Control
                 type="date"
@@ -149,7 +147,7 @@ export default function ModalProduct({show, onClose, product}) {
               Fechar
             </Button>
             <Button type="submit" variant="primary">
-              {isEdit ? "Editar" : "Adicionar"}
+              {isEdit ? "Salvar" : "Adicionar"}
             </Button>
           </Modal.Footer>
         </Form>

@@ -1,12 +1,5 @@
 import {createAction, createReducer} from "@reduxjs/toolkit";
-const INITIAL_STATE = []
-// {
-//   products: [],
-//   loading: false,
-//   error: undefined,
-//   showModal: {status: false, type: "", productId: ""},
-// };
-
+const INITIAL_STATE = [];
 export const addProduct = createAction("ADD_PRODUCT");
 export const getProducts = createAction("ADD_PRODUCTS");
 export const removeProduct = createAction("REMOVE_ITEM");
@@ -26,18 +19,4 @@ export default createReducer(INITIAL_STATE, {
       }
       return product;
     }),
-  // [showNewModal.type]: (state, action) => {
-  //   return {
-  //     ...state,
-  //     showModal: {status: true, type: "NEW", productId: ""},
-  //   };
-  // },
-  // [showNewModal.type]: (state, action) => {
-  //   state.filter((product) => {
-  //     return {
-  //       ...state,
-  //       showModal: {status: true, type: "EDIT", productId: action.product},
-  //     };
-  //   });
-  // },
 });

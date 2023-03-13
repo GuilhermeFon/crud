@@ -45,15 +45,6 @@ export const addProductFetch = (product) => {
   };
 };
 
-// export const updateProductFetch = (id) => {
-//   return (dispatch) => {
-//     api
-//       .patch(`http://localhost:3000/products/${id}`, product)
-//       .then((res) => dispatch(addProduct(res.data)))
-//       .catch(console.log);
-//   };
-// };
-
 export const updateProductFetch = (id, data) => {
   return (dispatch) => {
     api
